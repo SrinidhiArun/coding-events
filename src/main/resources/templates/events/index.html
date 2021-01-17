@@ -5,12 +5,14 @@
 <h1>All Events</h1>
 <nav th:replace="fragments :: navigation"></nav>
 <p th:unless="${events} and ${events.size()}">No Events</p>
-<table class="table table-striped">
+<table th:if="${events} and ${events.size()}" class="table table-striped" >
 <tr>
-    <th>Name</th>
+    <th>Name</th><th>Description</th><th>Address</th>
 </tr>
-<tr th:each="event :${events}">
-    <td th:text="${event}"></td>
+<tr th:each="event :${events.entrySet()}">
+    <td th:text="${event.getKey()}"></td>
+    <td th:text="${event.getValue()}"></td>
+    <td><p th:replace= "fragments :: address"></p></td>
 </tr>
 </table>
 </body>
